@@ -124,6 +124,7 @@ sudo nano /etc/ansible/hosts
 ```
 - ansible-playbook -i hosts apache.yml
 - The ansible successfully execute the task in the private server
+- create a ALB, AUTOSCALING GROUP and Route53 for access the application securely, high avaliable, scalable
 # or
 - For internet testing perpose we can use this also:
 - ansible all -i hosts -m ping
@@ -137,7 +138,8 @@ sudo nano /etc/ansible/hosts
  
   ![image](https://github.com/user-attachments/assets/0dc8b21a-a366-42ff-a5b0-c3dc7fb22832)
 
-  
+- so finally the mysql-db backup and server logs are send into the s3 bucket using python code and crontab expersion
+    
 # Benefits:
 1. Secure Private Networking
 - Keeps sensitive services (like the database) isolated from the internet.
