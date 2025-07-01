@@ -19,7 +19,7 @@
 
 ![image](https://github.com/user-attachments/assets/128b81db-76c5-4cb3-af9f-646819795702)
 
-  # Give here custom private sg id
+  - Give here custom private sg id
    - Change the security groups:
           - Private sg
      
@@ -27,7 +27,7 @@
 
 
 - Give here public sg id.
-- Connect to public server
+# Connect to public server
 - Executive this cmds:
 ```sh
 - sudo apt update
@@ -88,6 +88,46 @@ s3 = boto3.client('s3')
 s3.upload_file(backup_file, bucket_name, f"backup_{timestamp}.sql")
 print("Backup completed and uploaded to S3")
 ```
+# ISNTALL ANSIBLE IN PUBLIC SERVER
+```sh
+sudo apt update
+sudo apt upgrade -y
+sudo apt install ansible -y
+ansible --version
+sudo nano /etc/ansible/hosts
+- here menstion the group inventory name and paste private ip
+```
+# Test Connection
+- create one playbook file vi apache.yml
+```sh
+---
+- name: Simple Apache Web Server Setup
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Create a simple index.html
+      copy:
+        dest: /var/www/html/index.html
+        content: "<h1>Hello from Ansible</h1>"
+```
+- ansible-playbook -i hosts apache.yml
+- The ansible successfully execute the task in the private server
+# or
+- For internet testing perpose we can use this also:
+- ansible all -i hosts -m ping
+
 - crontab -e
   - select 1
   - paste------> * * * * * /root/bin/python3 /root/backup_to_s3.py >>
