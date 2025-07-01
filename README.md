@@ -6,8 +6,9 @@
       2.  A private EC2 instance for internal services
       3.  Automated patch management using scripts or tools (e.g., Ansible)
       4.  And scheduled backup automation of critical data to Amazon S3
-  - This setup simulates a real-world enterprise environment, focusing on security, automation, and best practices in AWS infrastructure management.
-    ![image](https://github.com/user-attachments/assets/25be9844-ceaa-481f-bac1-3a1fbeae8c85)
+
+      ![image](https://github.com/user-attachments/assets/25be9844-ceaa-481f-bac1-3a1fbeae8c85)
+    
 - Process:
   -    Create vpc for selected region
   -    Create subnets 1. Public subnet 2. Private subnet
@@ -15,7 +16,9 @@
   -    Launch ubuntu server 1. Public server 2. Private server
   -  Change the security groups
           - First public server sg
+
 ![image](https://github.com/user-attachments/assets/128b81db-76c5-4cb3-af9f-646819795702)
+       
           - Give here custom private sg id
    - Change the security groups:
           - Private sg
@@ -23,7 +26,7 @@
           - Give here public sg id.
 - Connect to public server
 -  Executive this cmds:
-sh '''
+```sh
 - sudo apt update
 - sudo apt install squid -y
 - sudo nano /etc/squid/squid.conf (alt + /) paste this one
@@ -34,11 +37,11 @@ http_access allow allowed_ip
 - ctrl+x
 - sudo systemctl restart squid
 - sudo systemctl enable squid
-'''
+```
 - Connect to private server
 - Attach a role ec2-s3
 - Execute this cmds:
-sh'''
+```sh
 - Vi /etc/environment
 Paste --- export http_proxy=http://<Public-server-pri-ip>:3128
 export https_proxy=http://<Public-server-pri-ip >:3128
@@ -64,10 +67,10 @@ export https_proxy=http://<Public-server-pri-ip >:3128
 - aws –version
 - aws configure
 - aws s3 ls s3://ansible-proj  
-'''
+```
 - write a code in python
      - vi backup_to_s3.py
-sh '''
+```sh
 import boto3
 import os
 import datetime
@@ -81,7 +84,7 @@ os.system(f"mysqldump -u root sampledb > {backup_file}")
 s3 = boto3.client('s3')
 s3.upload_file(backup_file, bucket_name, f"backup_{timestamp}.sql")
 print("Backup completed and uploaded to S3")
-'''
+```
 - crontab -e
   - select 1
   - paste------> * * * * * /root/bin/python3 /root/backup_to_s3.py >>
@@ -90,6 +93,8 @@ print("Backup completed and uploaded to S3")
   - aws s3 ls s3://ansible-proj /
  
   ![image](https://github.com/user-attachments/assets/0dc8b21a-a366-42ff-a5b0-c3dc7fb22832)
+
+  
 # Benefits:
 1. Secure Private Networking
 - Keeps sensitive services (like the database) isolated from the internet.
