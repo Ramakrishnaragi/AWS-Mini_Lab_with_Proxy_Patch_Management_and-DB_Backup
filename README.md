@@ -136,9 +136,10 @@ sudo nano /etc/ansible/hosts
   - cat /root/db_backup.log #check the logs
   - aws s3 ls s3://ansible-proj /
  
-  ![image](https://github.com/user-attachments/assets/0dc8b21a-a366-42ff-a5b0-c3dc7fb22832)
+![image](https://github.com/user-attachments/assets/71ffc2d9-eafa-461d-a8d5-89ee9b21673f)
 
-- so finally the mysql-db backup and server logs are send into the s3 bucket using python code and crontab expersion
+
+- so finally, the MySQL dB backup and server logs are send into the s3 bucket using python code and crontab expression
     
 # Benefits:
 1. Secure Private Networking
