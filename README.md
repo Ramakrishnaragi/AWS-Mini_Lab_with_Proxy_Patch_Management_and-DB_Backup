@@ -123,7 +123,7 @@ sudo nano /etc/ansible/hosts
         content: "<h1>Hello from Ansible</h1>"
 ```
 - ansible-playbook -i hosts apache.yml
-- The ansible successfully execute the task in the private server
+- The ansible successfully execute the task in the private server using the squid proxy
 - create a ALB, AUTOSCALING GROUP and Route53 for access the application securely, high avaliable, scalable
 # or
 - For internet testing perpose we can use this also:
@@ -131,7 +131,7 @@ sudo nano /etc/ansible/hosts
 
 - crontab -e
   - select 1
-  - paste------> * * * * * /root/bin/python3 /root/backup_to_s3.py >>
+  - paste------> */5 * * * * /root/bin/python3 /root/backup_to_s3.py >>
 /root/db_backup.log 2>&1
   - cat /root/db_backup.log #check the logs
   - aws s3 ls s3://ansible-proj /
