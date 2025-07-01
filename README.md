@@ -22,12 +22,13 @@
   # Give here custom private sg id
    - Change the security groups:
           - Private sg
+     
 ![image](https://github.com/user-attachments/assets/a11ee939-7e91-43ef-badf-d07a6e0e174b)
 
 
-# Give here public sg id.
+- Give here public sg id.
 - Connect to public server
--  Executive this cmds:
+- Executive this cmds:
 ```sh
 - sudo apt update
 - sudo apt install squid -y
