@@ -124,9 +124,9 @@ sudo nano /etc/ansible/hosts
 ```
 - ansible-playbook -i hosts apache.yml
 - The ansible successfully execute the task in the private server using the squid proxy
-- create a ALB, AUTOSCALING GROUP and Route53 for access the application securely, high avaliable, scalable
+- create a ALB, AUTOSCALING GROUP and Route53 for access the application securely, high available, scalable
 # or
-- For internet testing perpose we can use this also:
+- For internet testing purpose we can use this also:
 - ansible all -i hosts -m ping
 
 - crontab -e
