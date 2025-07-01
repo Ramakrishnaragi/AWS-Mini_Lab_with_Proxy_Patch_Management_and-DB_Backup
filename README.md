@@ -88,7 +88,7 @@ s3 = boto3.client('s3')
 s3.upload_file(backup_file, bucket_name, f"backup_{timestamp}.sql")
 print("Backup completed and uploaded to S3")
 ```
-# ISNTALL ANSIBLE IN PUBLIC SERVER
+# INSTALL ANSIBLE IN PUBLIC SERVER
 ```sh
 sudo apt update
 sudo apt upgrade -y
