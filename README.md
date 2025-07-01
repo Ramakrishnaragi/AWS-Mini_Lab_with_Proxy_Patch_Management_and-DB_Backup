@@ -18,12 +18,12 @@
           - First public server sg
 
 ![image](https://github.com/user-attachments/assets/128b81db-76c5-4cb3-af9f-646819795702)
-       
-          - Give here custom private sg id
+        - Give here custom private sg id
    - Change the security groups:
           - Private sg
 ![image](https://github.com/user-attachments/assets/a11ee939-7e91-43ef-badf-d07a6e0e174b)
-          - Give here public sg id.
+
+      - Give here public sg id.
 - Connect to public server
 -  Executive this cmds:
 ```sh
