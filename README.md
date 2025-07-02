@@ -106,23 +106,25 @@ sudo nano /etc/ansible/hosts
   become: yes
 
   tasks:
-    - name: Install Apache
-      yum:
-        name: httpd
+    - name: Install Apache (Ubuntu)
+      apt:
+        name: apache2
         state: present
+        update_cache: yes
 
-    - name: Start Apache
+    - name: Start and enable Apache
       service:
-        name: httpd
+        name: apache2
         state: started
         enabled: yes
 
-    - name: Create a simple index.html
+    - name: Create a simple index.html page
       copy:
         dest: /var/www/html/index.html
         content: "<h1>Hello from Ansible</h1>"
+
 ```
-- ansible-playbook -i hosts apache.yml
+- ansible-playbook -i /etc/ansible/hosts apache.yml
 - The ansible successfully execute the task in the private server using the squid proxy
 - create a ALB, AUTOSCALING GROUP and Route53 for access the application securely, high available, scalable
 # or
@@ -134,7 +136,18 @@ sudo nano /etc/ansible/hosts
   - paste------> */5 * * * * /root/bin/python3 /root/backup_to_s3.py >>
 /root/db_backup.log 2>&1
   - cat /root/db_backup.log #check the logs
-  - aws s3 ls s3://ansible-proj /
+  - aws s3 ls s3://ansible-proj
+
+![image](https://github.com/user-attachments/assets/1a87e229-2408-49df-a76d-549432da9404)
+
+-	For internet testing perpose I use ansible tool to install the apache2 web server in private server and I can access the apache2 application through the Load balancer
+-	For distributing the traffic from public server to private server.
+-	So finally I implement route53 to access the web application through global wide.
+
+![image](https://github.com/user-attachments/assets/31966f62-f6f8-49f4-a957-152a5771400e)
+
+# Please access this DNS onces----> http://ansible.ramcloud.shop (Note: check once access through http)
+
  
 ![image](https://github.com/user-attachments/assets/71ffc2d9-eafa-461d-a8d5-89ee9b21673f)
 
